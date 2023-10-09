@@ -6,7 +6,8 @@ import mysql.connector
 def criando_aluno():
         obj = request.json
         values = (obj['nome'], obj['idade'], obj['nota_1_semestre'], obj['nota_2_semestre'], obj['nome_professor'], obj['numero_da_sala'])
-        conn = mysql.connector.connect(host='localhost', user='root', password='12345', database='alunos')
+        #conn = mysql.connector.connect(host='localhost', user='root', password='12345', database='alunos')
+        conn = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root', port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
         cursor = conn.cursor()
         sql_insert = "INSERT INTO resumo_aluno (nome,idade,nota_1_semestre,nota_2_semestre,nome_professor,numero_da_sala) VALUES (%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql_insert, (values))
@@ -31,7 +32,7 @@ def criando_aluno():
 def retornando_alunos():
         resultado = []
         
-        conn = mysql.connector.connect(host='localhost', user='root', password='12345', database='alunos')
+        conn = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root', port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
 
         cursor = conn.cursor()
         sql_select = "SELECT * FROM resumo_aluno"
@@ -53,7 +54,9 @@ def retornando_alunos():
 
 #Função para retornar um aluno especifico passando um ID
 def retornando_aluno(id:int):
-        conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        #conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        conn = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root', port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
+
         cursor = conn.cursor()
 
         sql_select = "SELECT * FROM resumo_aluno WHERE id = %s"
@@ -74,7 +77,9 @@ def retornando_aluno(id:int):
 def atualizar_aluno(id:int, nome, idade, nota_1_semestre, nota_2_semestre, nome_professor, numero_da_sala):
     try:
         #Tentar atualizar
-        conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        #conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        conn = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root', port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
+
         cursor = conn.cursor()
         sql_update = "UPDATE resumo_aluno SET nome = %s, idade = %s, nota_1_semestre = %s, nota_2_semestre = %s, nome_professor = %s, numero_da_sala = %s WHERE id = %s"
         cursor.execute(sql_update, (nome, idade, nota_1_semestre, nota_2_semestre, nome_professor, numero_da_sala, id))
@@ -88,7 +93,8 @@ def atualizar_aluno(id:int, nome, idade, nota_1_semestre, nota_2_semestre, nome_
 #Remove um resumo de aluno, exluindo todos os dados que estiverem no ID
 def remover_aluno(id:int):
     try:
-        conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        #conn = connection.MySQLConnection(host='localhost', user='root', password='12345', database='alunos')
+        conn = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root', port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
         cursor = conn.cursor()
         sql_delete = "DELETE FROM resumo_aluno WHERE id = %s"
         cursor.execute(sql_delete, (id, ))

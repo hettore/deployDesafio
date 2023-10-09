@@ -3,7 +3,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 try:
-	db_connection = mysql.connector.connect(host='localhost', user='root', password='12345', database='alunos')
+	db_connection = mysql.connector.connect(host='containers-us-west-57.railway.app', user='root',port=7466, password='RLpNxlVzL2vWAfrmyPac', database='railway')
 	print("Database connection made!")
 except mysql.connector.Error as error:
 	if error.errno == errorcode.ER_BAD_DB_ERROR:
