@@ -7,7 +7,6 @@
       }
     ],
     "routes": [
-        { 
-            "destination": "api/static/main.py" }
+        
     ]
   }
